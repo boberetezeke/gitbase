@@ -1,3 +1,6 @@
 %h2 Index
 
-= render partial: 'application_start'
+= render_view_model pages_table
+
+- if RUBY_ENGINE != 'opal'
+  = render partial: 'application_start'
