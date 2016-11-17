@@ -1,5 +1,6 @@
 class ProjectDirectoriesController < ApplicationController
   def index
+    Page.create(title: 'title', body: 'body')
     @project_directories = ProjectDirectory.all
   end
 

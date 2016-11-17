@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resource :project_directories
+  resources :pages
 
-  root to: "project_directories#index"
+  root to: "pages#index"
 end

@@ -1,0 +1,19 @@
+<% content_for :script do %>
+    $(function() {
+    Opal.MyApplication.$instance().$launch(
+    '<%=
+  if @pages
+    json_hash = @pages.as_json(
+        root: true
+    )
+  else
+    json_hash = @page.as_json(
+        root: true
+    )
+  end
+  quote_single_quotes(json_hash.to_json).html_safe
+%>',
+    '<%= {}.to_json.html_safe %>'
+    )
+    });
+<% end %>

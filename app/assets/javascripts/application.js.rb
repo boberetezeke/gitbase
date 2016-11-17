@@ -1,0 +1,8 @@
+require 'opal'
+require 'opal_ujs'
+require 'erb'
+require 'active_record'
+require 'action_pack'
+require 'view_model'
+require 'opal/config/application.js.rb'
+require_tree '.'
