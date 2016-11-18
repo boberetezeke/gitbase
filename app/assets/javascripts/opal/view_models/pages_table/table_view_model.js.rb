@@ -1,0 +1,1 @@
+../../../../../../app/view_models/pages_table/table_view_model.rb

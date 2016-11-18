@@ -1,0 +1,7 @@
+%h2 Show
+
+%div Title: #{render_view_model title}
+%div Body:  #{render_view_model body}
+
+- if RUBY_ENGINE != 'opal'
+  = render partial: 'application_start'

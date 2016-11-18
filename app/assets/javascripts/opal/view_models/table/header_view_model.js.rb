@@ -1,0 +1,1 @@
+../../../../../../../../Opal/view_model_components/table/app/view_models/table/header_view_model.rb

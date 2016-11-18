@@ -1,0 +1,1 @@
+../../../../../../../../Opal/view_model_components/fields/app/view_models/fields/select_view_model.rb

@@ -1,0 +1,1 @@
+../../../../../../app/view_models/pages/index_view_model.rb
