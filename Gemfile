@@ -33,6 +33,8 @@ gem 'opal-viewmodel',  path: "../../Opal/opal-viewmodel"
 gem 'fields', path: '../../Opal/view_model_components/fields'
 gem 'table', path: '../../Opal/view_model_components/table'
 
+gem 'simplemde-rails'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

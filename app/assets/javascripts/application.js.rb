@@ -1,3 +1,4 @@
+require 'simplemde.min'
 require 'opal'
 require 'opal_ujs'
 require 'erb'

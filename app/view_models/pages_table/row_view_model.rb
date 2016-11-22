@@ -10,7 +10,7 @@ module PagesTable
           application.go_to_route(show_link, render_view: true, selector: "#app")
         })
       else
-        Fields::TextViewModel.new(vmc, id, page, self, field_name, edit_state, show_link)
+        Fields::TextViewModel.new(vmc, page, field_name, id: id)
       end
     end
   end
