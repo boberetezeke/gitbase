@@ -6,15 +6,9 @@ module Pages
     end
 
     def build
-      view_models =  [
-          Fields::TextViewModel.new(vmc, @page, :title),
-          Fields::TextAreaViewModel.new(vmc, @page, :body, edit_state: :edit),
-          Fields::SubmitButtonViewModel.new(vmc, :save, "Create", on_click_lambda: ->{
-            puts "submit clicked"
-          })
-      ]
-
-      create('pages/show', view_models: view_models)
+      fields = PagesForm::FormViewModel.new(vmc, @page)
+      form = Fields::FormViewModel.new(vmc, :page, @page, fields)
+      create('pages/show', view_models: {form: form} )
     end
   end
 end

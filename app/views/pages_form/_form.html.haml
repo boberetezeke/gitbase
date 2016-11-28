@@ -1,0 +1,8 @@
+%h2 #{ render_form_view_model title, form_object }
+%div Body: #{ render_form_view_model body, form_object }
+
+= render_form_view_model save, form_object
+
+:javascript
+  var simpleMDE = new SimpleMDE();
+

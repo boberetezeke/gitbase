@@ -1,10 +1,4 @@
-%h2 #{render_view_model title}
-%div Body:  #{render_view_model body}
+= render_view_model form
 
-= render_view_model save
-
-:javascript
-  var simpleMDE = new SimpleMDE();
-
-- if RUBY_ENGINE != 'opal'
-  = render partial: 'application_start'
+/- if RUBY_ENGINE != 'opal'
+/  = render partial: 'application_start'

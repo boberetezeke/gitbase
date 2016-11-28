@@ -4,7 +4,7 @@ module PagesTable
       id = "cell-#{row_index}-#{col_index}"
       puts "in new_column"
       if show_link
-        Fields::LinkViewModel.new(vmc, id, page.send(field_name), show_link, ->{
+        Fields::LinkViewModel.new(vmc, id, page.send(field_name), show_link, click_lambda: ->{
           vmc.unregister_all_handlers
           application = Application.instance
           application.go_to_route(show_link, render_view: true, selector: "#app")
