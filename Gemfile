@@ -32,8 +32,11 @@ gem 'opal-viewmodel',  path: "../../Opal/opal-viewmodel"
 
 gem 'fields', path: '../../Opal/view_model_components/fields'
 gem 'table', path: '../../Opal/view_model_components/table'
+gem 'modal', path: '../../Opal/view_model_components/modal'
 
 gem 'simplemde-rails'
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem 'devise'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

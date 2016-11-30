@@ -4,13 +4,13 @@ module PagesTable
     columns              [:title, :guid]
 
     show_link_lambda     ->(page) { "/pages/#{page.id}" }
-    new_link_lambda      ->             { "/pages/new" }
+    new_link_lambda      ->       { "/pages/new" }
     edit_link_lambda     ->(page) { "/pages/#{page.id}/edit" }
     delete_link_lambda   ->(page) { "/pages/#{page.id}" }
 
-    def initialize(vmc, pages)
+    def initialize(vmc, pages, id: :pages_table)
       @pages = pages
-      super(vmc, :pages_table)
+      super(vmc, id)
     end
 
     def build

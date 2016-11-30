@@ -1,4 +1,7 @@
+require 'securerandom'
+
 class Page < ActiveRecord::Base
+  before_create { self.guid = SecureRandom.uuid }
   after_save { GitRepository::FileObject.new(self).write }
 
   def class_info
@@ -7,10 +10,6 @@ class Page < ActiveRecord::Base
       markdown_attributes: [:body],
       titleize: self.class.to_s.titleize
     })
-  end
-
-  def guid
-    self.id.to_s
   end
 
   def as_json_without_markdown_attributes

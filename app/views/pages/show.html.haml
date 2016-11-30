@@ -1,4 +1,8 @@
-= render_view_model form
+%div{id: vm.id_value}
+  = render_view_model form
 
-/- if RUBY_ENGINE != 'opal'
-/  = render partial: 'application_start'
+  - if modal_state == :on
+    = render_view_model modal
+
+- if RUBY_ENGINE != 'opal'
+  = render partial: 'application_start'
