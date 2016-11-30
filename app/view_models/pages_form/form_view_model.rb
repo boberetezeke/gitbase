@@ -19,8 +19,4 @@ module PagesForm
       create("pages_form/form", view_models: view_models)
     end
   end
-
-  def modal_closed
-    update(modal_state: :off)
-  end
 end

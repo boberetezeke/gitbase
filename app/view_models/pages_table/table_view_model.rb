@@ -14,11 +14,16 @@ module PagesTable
     end
 
     def build
-      create(@pages, "pages_table/table", true)
+      search = Fields::TextViewModel.new(vmc, :search, value: "", on_change_lambda: ->(search){ search_changed(search) }, edit_state: :edit)
+      create(@pages, "pages_table/table", true, {search: search})
     end
 
     def new_row(vmc, table, page, row_index, edit_inline)
       RowViewModel.new(vmc, "page-#{page.id}", table, page, row_index, show_link_lambda, edit_link_lambda, delete_link_lambda, 0, :display, edit_inline)
+    end
+
+    def search_changed(search)
+      puts "search value: #{search.get_value}"
     end
   end
 end

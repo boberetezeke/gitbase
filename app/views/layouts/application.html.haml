@@ -63,7 +63,8 @@
         %p.notice= notice
       - if alert
         %p.alert= alert
-      = yield
+      #app
+        = yield
 
       %script{type: "application/javascript"}
         = content_for :script
