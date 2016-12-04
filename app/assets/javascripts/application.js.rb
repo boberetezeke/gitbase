@@ -1,7 +1,6 @@
 require 'jquery'
 require 'jquery_ujs'
-require 'simplemde.min'
-# require 'simplemde-out'
+require 'simplemde'
 require 'twitter/bootstrap'
 require 'opal'
 require 'opal_ujs'
