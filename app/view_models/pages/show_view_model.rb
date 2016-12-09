@@ -10,8 +10,17 @@ module Pages
         puts "link clicked"
         self.update(modal_state: :on)
       })
-      fields = PagesForm::FormViewModel.new(vmc, @page, show_modal)
-      form = Fields::FormViewModel.new(vmc, :page, @page, fields)
+      show = self
+      form = Fields::FormViewModel.new(vmc, :page, object: @page) do |f|
+        [
+          Fields::TextViewModel.new(vmc,          :title, object: @page, edit_state: :edit, form: f),
+          Fields::TextAreaViewModel.new(vmc,      :body,  object: @page, edit_state: :edit, form: f),
+          show_modal,
+          Fields::SubmitButtonViewModel.new(vmc,  :save, "Create", form: f, on_click_lambda: ->{
+             puts "submit clicked"
+          })
+        ]
+      end
       view_models = {form: form}
 
       if modal_state == :on

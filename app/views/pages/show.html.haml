@@ -1,8 +1,54 @@
 %div{id: vm.id_value}
-  = render_view_model form
+  = render_view_model form do |f|
+    - `_hamlout.$push_buffer()` if RUBY_ENGINE == 'opal'
+    .row
+      .col-md-6
+        = render_view_model f.title
+      .col-md-6
+        = render_view_model f.show_modal
+    .row
+      .col-md-12
+        = render_view_model f.body
+
+    .row
+      .col-md-12
+        = render_view_model f.save
+    - `var output = _hamlout.$join(); _hamlout.$pop_buffer(); return output` if RUBY_ENGINE == 'opal'
 
   - if modal_state == :on
     = render_view_model modal
 
 - if RUBY_ENGINE != 'opal'
   = render partial: 'application_start'
+
+:javascript
+  var simpleMDE = new SimpleMDE({
+      toolbar: [
+        "bold", "italic", "strikethrough",
+        "|", // Separator
+        "heading-1", "heading-2", "heading-3",
+        "|", // Separator
+        "unordered-list", "ordered-list",
+        "|", // Separator
+        {
+            name: "link",
+            action: function customFunction(editor){
+                console.log("link");
+                SimpleMDE.drawLink(editor, 'http://another-url');
+            },
+            className: "fa fa-link",
+            title: "Add Link"
+        },
+        {
+            name: "image",
+            action: function customFunction(editor){
+                console.log("image");
+                SimpleMDE.drawImage(editor);
+            },
+            className: "fa fa-image",
+            title: "Add Image"
+        },
+        "|", // Separator
+        "preview", "side-by-side", "fullscreen"
+      ]});
+      simpleMDE.togglePreview();
