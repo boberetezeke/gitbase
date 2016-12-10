@@ -28,16 +28,24 @@ class PagesController < ApplicationController
 
   def update
     @page = Page.find(params[:id])
-    if @page.update(page_params)
-      redirect_to pages_path
-    else
-      render :show
+    respond_to do |format|
+      if @page.update(page_params)
+        format.html do
+          redirect_to pages_path
+        end
+        format.json do
+          render json: @page
+        end
+      else
+        format.html { render :show }
+        format.json { @page.errors }
+      end
     end
   end
 
   private
 
   def page_params
-    params.require(:page).permit(:title, :body)
+    params.require(:page).permit(:title, :body, :guid)
   end
 end

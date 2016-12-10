@@ -10,15 +10,18 @@ module Pages
         puts "link clicked"
         self.update(modal_state: :on)
       })
-      show = self
-      form = Fields::FormViewModel.new(vmc, :page, object: @page) do |f|
+
+      form = Fields::FormViewModel.new(vmc, :page, object: @page, on_submit_lambda: ->(object, url, action) {
+        puts "on submit clicked, object=#{object}, url=#{url}, action=#{action}"
+        ActionSyncer::RemoteSaver.new(url, object, :page, action).save.then do
+          puts "page saved"
+        end
+      }) do |f|
         [
           Fields::TextViewModel.new(vmc,          :title, object: @page, edit_state: :edit, form: f),
           Fields::TextAreaViewModel.new(vmc,      :body,  object: @page, edit_state: :edit, form: f),
           show_modal,
-          Fields::SubmitButtonViewModel.new(vmc,  :save, "Create", form: f, on_click_lambda: ->{
-             puts "submit clicked"
-          })
+          Fields::SubmitButtonViewModel.new(vmc,  :save, "Create", form: f)
         ]
       end
       view_models = {form: form}
