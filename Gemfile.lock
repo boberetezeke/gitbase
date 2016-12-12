@@ -21,6 +21,12 @@ PATH
       opal (>= 0.5.0, < 1.0.0)
 
 PATH
+  remote: ../../Opal/opal-form
+  specs:
+    opal-form (0.0.1)
+      opal (>= 0.5.0, < 1.0.0)
+
+PATH
   remote: ../../Opal/opal-viewmodel
   specs:
     opal-viewmodel (0.0.5)
@@ -283,6 +289,7 @@ DEPENDENCIES
   modal!
   opal-actionpack!
   opal-activerecord!
+  opal-form!
   opal-haml
   opal-rails
   opal-viewmodel!

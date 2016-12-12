@@ -11,19 +11,14 @@ module Pages
         self.update(modal_state: :on)
       })
 
-      form = Fields::FormViewModel.new(vmc, :page, object: @page, on_submit_lambda: ->(object, url, action) {
-        puts "on submit clicked, object=#{object}, url=#{url}, action=#{action}"
-        ActionSyncer::RemoteSaver.new(url, object, :page, action).save.then do
-          puts "page saved"
-        end
-      }) do |f|
-        [
-          Fields::TextViewModel.new(vmc,          :title, object: @page, edit_state: :edit, form: f),
-          Fields::TextAreaViewModel.new(vmc,      :body,  object: @page, edit_state: :edit, form: f),
-          show_modal,
-          Fields::SubmitButtonViewModel.new(vmc,  :save, "Create", form: f)
-        ]
+      form = form_for @page, vmc: vmc do |f|
+        f.text_field  :title
+        f.text_area   :body
+        f.submit      :save, 'Create'
+
+        f.view_model(show_modal)
       end
+
       view_models = {form: form}
 
       if modal_state == :on

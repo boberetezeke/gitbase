@@ -29,6 +29,7 @@ gem 'opal-actionpack', path: "../../Opal/opal-actionpack"
 
 # Opal View Model and components
 gem 'opal-viewmodel',  path: "../../Opal/opal-viewmodel"
+gem 'opal-form', path: "../../Opal/opal-form"
 
 gem 'fields', path: '../../Opal/view_model_components/fields'
 gem 'table', path: '../../Opal/view_model_components/table'
