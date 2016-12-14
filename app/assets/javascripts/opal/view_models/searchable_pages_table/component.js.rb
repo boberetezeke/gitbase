@@ -1,0 +1,1 @@
+../../../../../../app/view_models/searchable_pages_table/component.rb

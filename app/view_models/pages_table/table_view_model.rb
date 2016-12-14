@@ -10,20 +10,15 @@ module PagesTable
 
     def initialize(vmc, pages, id: :pages_table)
       @pages = pages
-      super(vmc, id)
+      super(vmc, id, additional_states: {filter_by: ""})
     end
 
     def build
-      search = Fields::TextViewModel.new(vmc, :search, value: "", on_change_lambda: ->(search){ search_changed(search) }, edit_state: :edit)
-      create(@pages, "pages_table/table", true, {search: search})
+      create(@pages, view_name: "pages_table/table")
     end
 
     def new_row(vmc, table, page, row_index, edit_inline)
-      RowViewModel.new(vmc, "page-#{page.id}", table, page, row_index, show_link_lambda, edit_link_lambda, delete_link_lambda, 0, :display, edit_inline)
-    end
-
-    def search_changed(search)
-      puts "search value: #{search.get_value}"
+      RowViewModel.new(vmc, "page-#{page.id}", table, page, row_index, get_show_link_lambda, get_edit_link_lambda, get_delete_link_lambda, 0, :display, edit_inline)
     end
   end
 end

@@ -7,7 +7,7 @@ module Pages
 
     def build
       view_models =  {
-          pages_table:  PagesTable::TableViewModel.new(vmc, @pages),
+          searchable_pages_table:  SearchablePagesTable::Component.new(vmc, :searchable_pages_table, @pages),
           static: Fields::StaticViewModel.new(vmc, "static", "hello"),
       }
 
