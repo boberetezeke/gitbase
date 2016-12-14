@@ -7,9 +7,10 @@ class PagesController < ApplicationController
   def show
     # @page = Page.where(id: params[:id]).first || Page.where(guid: params[:id]).first
     @page = Page.find(params[:id])
+    @pages = Page.all
     puts "params[:id] = #{params[:id]}"
     puts "@page = #{@page}"
-    render_vm { |vmc| Pages::ShowViewModel.new(vmc, @page) }
+    render_vm { |vmc| Pages::ShowViewModel.new(vmc, @page, @pages) }
   end
 
   def new

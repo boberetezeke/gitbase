@@ -1,7 +1,8 @@
 module Pages
   class ShowViewModel < ViewModel
-    def initialize(vmc, page)
+    def initialize(vmc, page, pages)
       @page = page
+      @pages = pages
       super(vmc, 'show', {modal_state: :off})
     end
 
@@ -22,7 +23,7 @@ module Pages
       view_models = {form: form}
 
       if modal_state == :on
-        pages_selector = Selector::PagesViewModel.new(vmc, :pages_selector)
+        pages_selector = Selector::PagesViewModel.new(vmc, :pages_selector, @pages)
         modal = Modal::ModalViewModel.new(vmc, :modal, pages_selector, "Select Pages", "Ok")
         view_models = view_models.merge(modal: modal)
       end
