@@ -1,7 +1,8 @@
 module SearchablePagesTable
   class Component < ViewModel
-    def initialize(vmc, id, pages)
+    def initialize(vmc, id, pages, selected_page_lambda: nil)
       @pages = pages
+      @selected_page_lambda = selected_page_lambda
       super(vmc, id, {filter_by: ["", :string]})
     end
 
@@ -16,7 +17,7 @@ module SearchablePagesTable
       else
         pages = @pages
       end
-      pages_table = PagesTable::TableViewModel.new(vmc, pages)
+      pages_table = PagesTable::TableViewModel.new(vmc, pages, selected_page_lambda: @selected_page_lambda)
 
       create("searchable_pages_table/component", view_models: [search, pages_table])
     end

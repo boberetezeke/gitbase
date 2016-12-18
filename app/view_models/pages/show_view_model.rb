@@ -23,17 +23,30 @@ module Pages
       view_models = {form: form}
 
       if modal_state == :on
-        pages_selector = Selector::PagesViewModel.new(vmc, :pages_selector, @pages)
-        modal = Modal::ModalViewModel.new(vmc, :modal, pages_selector, "Select Pages", "Ok")
-        view_models = view_models.merge(modal: modal)
+        pages_selector = Selector::PagesViewModel.new(vmc, :pages_selector, @pages,
+                                                      selected_page_lambda: ->(page) {
+                                                        puts "selected page: #{page.guid}"
+                                                        @modal.hide
+                                                      })
+        @modal = Modal::ModalViewModel.new(vmc, :modal, pages_selector, "Select Pages", "Ok")
+        view_models = view_models.merge(modal: @modal)
       end
 
       create('pages/show', view_models: view_models, values: {show_modal: show_modal} )
     end
 
+    def getLink
+      self.update(modal_state: :on)
+      "http://my-new-link"
+    end
+
     def modal_closed
       puts "modal closed"
       update(modal_state: :off)
+    end
+
+    def register_handlers
+      `new PageEditor(#{->{self.getLink}})`
     end
   end
 end

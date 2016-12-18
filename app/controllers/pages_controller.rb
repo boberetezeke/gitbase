@@ -4,6 +4,11 @@ class PagesController < ApplicationController
     render_vm { |vmc| Pages::IndexViewModel.new(vmc, @pages) }
   end
 
+  def tables
+    @pages = Page.all
+    render_vm { |vmc| Pages::TablesViewModel.new(vmc, @pages) }
+  end
+
   def show
     # @page = Page.where(id: params[:id]).first || Page.where(guid: params[:id]).first
     @page = Page.find(params[:id])
