@@ -11,7 +11,9 @@ PageEditor = function(getLink) {
                 name: "link",
                 action: function customFunction(editor) {
                     console.log("link");
-                    SimpleMDE.drawLink(editor, getLink());
+                    getLink(function(link) {
+                      SimpleMDE.drawLink(editor, link);
+                    })
                 },
                 className: "fa fa-link",
                 title: "Add Link"

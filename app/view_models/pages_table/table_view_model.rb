@@ -5,7 +5,7 @@ module PagesTable
     show_index           0
 
     show_link_lambda     ->(page) { "/pages/#{page.id}" }
-    new_link_lambda      ->       { "/pages/new" }
+    # new_link_lambda      ->       { "/pages/new" }
     edit_link_lambda     ->(page) { "/pages/#{page.id}/edit" }
     delete_link_lambda   ->(page) { "/pages/#{page.id}" }
 
@@ -14,6 +14,7 @@ module PagesTable
     def initialize(vmc, pages, id: :pages_table, selected_page_lambda: nil)
       @pages = pages
       @selected_page_lambda = selected_page_lambda
+      @new_link_lambda = ->{ "/pages/new" } unless @selected_page_lambda
       super(vmc, id, additional_states: {filter_by: ""})
     end
 

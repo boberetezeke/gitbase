@@ -8,7 +8,7 @@ module PagesTable
 
     def build
       create("pages_table/select_action_column", view_models: [
-        Fields::LinkViewModel.new(vmc, :select_button, "Select", "#", click_lambda: ->{ @selected_page_lambda.call(@object) })
+        Fields::LinkViewModel.new(vmc, :select_button, "Select", "#", click_lambda: ->{ @selected_page_lambda.call(@object) }, options: {class: 'btn btn-sm btn-primary'})
       ])
     end
   end

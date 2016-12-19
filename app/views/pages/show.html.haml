@@ -2,10 +2,8 @@
   = render_view_model form do |f|
     - `_hamlout.$push_buffer()` if RUBY_ENGINE == 'opal'
     .row
-      .col-md-6
+      .col-md-12
         = render_view_model f.title
-      .col-md-6
-        = render_view_model f.show_modal
     .row
       .col-md-12
         = render_view_model f.body
@@ -15,8 +13,7 @@
         = render_view_model f.save
     - `var output = _hamlout.$join(); _hamlout.$pop_buffer(); return output` if RUBY_ENGINE == 'opal'
 
-  - if modal_state == :on
-    = render_view_model modal
+  = render_view_model selector_modal
 
 - if RUBY_ENGINE != 'opal'
   = render partial: 'application_start'

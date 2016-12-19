@@ -20,7 +20,8 @@ class PagesController < ApplicationController
 
   def new
     @page = Page.new
-    render_vm { |vmc| Pages::ShowViewModel.new(vmc, @page) }
+    @pages = Page.all
+    render_vm { |vmc| Pages::ShowViewModel.new(vmc, @page, @pages) }
   end
 
   def create
