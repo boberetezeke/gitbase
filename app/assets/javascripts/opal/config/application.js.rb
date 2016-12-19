@@ -21,9 +21,8 @@ class MyApplication < Application
   end
 end
 
-MyApplication.routes.draw do
-  resources :pages
-end
+# this is necessary so that Rails.application works as it calls Application.instance
+MyApplication.instance
 
 # this is needed for broken haml implementation
 class Template
