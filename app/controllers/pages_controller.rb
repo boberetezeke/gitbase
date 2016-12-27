@@ -1,7 +1,18 @@
 class PagesController < ApplicationController
   def index
-    @pages = Page.all
-    render_vm { |vmc| Pages::IndexViewModel.new(vmc, @pages) }
+    respond_to do |format|
+      Pages::PaginatedQuery.new(params).query.then do |pages|
+        format.html do
+          @pages = pages.to_a
+          render_vm { |vmc|
+            Pages::IndexViewModel.new(vmc, pages)
+          }
+        end
+        format.json do
+          render json: pages.to_json
+        end
+      end
+    end
   end
 
   def tables
