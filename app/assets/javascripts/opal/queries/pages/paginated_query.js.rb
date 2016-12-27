@@ -1,0 +1,1 @@
+../../../../../queries/pages/paginated_query.rb
