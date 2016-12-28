@@ -1,5 +1,6 @@
 PageEditor = function(getLink) {
     this.simpleMDE = new SimpleMDE({
+        autoDownloadFontAwesome: false,
         toolbar: [
             "bold", "italic", "strikethrough",
             "|", // Separator
