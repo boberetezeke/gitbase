@@ -5,7 +5,13 @@ class PagesController < ApplicationController
         format.html do
           @pages = pages.to_a
           render_vm { |vmc|
-            Pages::IndexViewModel.new(vmc, pages)
+            if params[:as_selector]
+              puts "building selector pages view model"
+              Selector::PagesViewModel.new(vmc, :selector, pages, selected_page_lambda: params[:selected_page_lambda])
+            else
+              puts "building index pages view model"
+              Pages::IndexViewModel.new(vmc, pages)
+            end
           }
         end
         format.json do
