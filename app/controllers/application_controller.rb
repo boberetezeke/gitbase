@@ -5,10 +5,4 @@ class ApplicationController < ActionController::Base
     before_action :authenticate_user!
     protect_from_forgery with: :exception, prepend: true
   end
-
-  def render_vm
-    TopLevelViewModelController.render_view_model(self, action_name, params, "#app") do |vmc|
-      yield(vmc)
-    end
-  end
 end
