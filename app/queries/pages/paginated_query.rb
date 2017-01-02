@@ -27,7 +27,16 @@ class Query
 
   def execute_query_promise
     obj = execute_query
-    Promise.new.resolve(obj)
+    promise = Promise.new
+
+    if on_server?
+      promise.resolve(obj)
+    else
+      # prevent rentrancy issues
+      after(0) { promise.resolve(obj) }
+    end
+
+    promise
   end
 
   def execute_http_promise
