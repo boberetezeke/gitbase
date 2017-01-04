@@ -33,7 +33,8 @@ class Query
       promise.resolve(obj)
     else
       # prevent rentrancy issues
-      after(0) { promise.resolve(obj) }
+      # after(0) { promise.resolve(obj) }
+      promise.resolve(obj)
     end
 
     promise

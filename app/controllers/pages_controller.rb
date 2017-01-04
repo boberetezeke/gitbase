@@ -7,7 +7,7 @@ class PagesController < ApplicationController
           render_vm { |vmc|
             if params[:as_selector]
               puts "building selector pages view model"
-              Selector::PagesViewModel.new(vmc, :selector, pages, selected_page_lambda: params[:selected_page_lambda])
+              Selector::PagesViewModel.new(vmc, :selector, pages, selected_page_lambda: params[:_selected_page_lambda])
             else
               puts "building index pages view model"
               Pages::IndexViewModel.new(vmc, pages)
