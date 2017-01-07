@@ -13,6 +13,8 @@ require 'form'
 require 'opal/view_models/fields/requires'
 require 'opal/view_models/table/requires'
 
+require 'opal/queries/query'
+
 require_tree '.'
 
 require 'opal/config/application'

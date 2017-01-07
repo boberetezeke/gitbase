@@ -34,8 +34,7 @@ module Pages
   end
 
   class SelectorModal < ViewModel
-    def initialize(vmc, pages)
-      # @pages = pages
+    def initialize(vmc)
       super(vmc, :selector_modal, {show: :off})
     end
 
@@ -94,14 +93,13 @@ module Pages
   end
 
   class ShowViewModel < ViewModel
-    def initialize(vmc, page, pages)
+    def initialize(vmc, page)
       @page = page
-      @pages = pages
       super(vmc, 'show', {modal_state: :off})
     end
 
     def build
-      @selector_modal = SelectorModal.new(vmc, @pages)
+      @selector_modal = SelectorModal.new(vmc)
 
       form = form_for @page, vmc: vmc do |f|
         f.text_field  :title

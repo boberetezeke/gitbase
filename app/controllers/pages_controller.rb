@@ -27,12 +27,17 @@ class PagesController < ApplicationController
   end
 
   def show
-    # @page = Page.where(id: params[:id]).first || Page.where(guid: params[:id]).first
-    @page = Page.find(params[:id])
-    @pages = Page.all
-    puts "params[:id] = #{params[:id]}"
-    puts "@page = #{@page}"
-    render_vm { |vmc| Pages::ShowViewModel.new(vmc, @page, @pages) }
+    respond_to do |format|
+      Pages::PageQuery.new(params).query.then do |page|
+        @page = page
+        format.html do
+          render_vm { |vmc| Pages::ShowViewModel.new(vmc, page) }
+        end
+        format.json do
+          render json: page.to_json
+        end
+      end
+    end
   end
 
   def new
