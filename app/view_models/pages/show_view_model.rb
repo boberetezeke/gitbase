@@ -117,6 +117,11 @@ module Pages
       @selector_modal.update(show: :loading)
     end
 
+    def linkClicked(href)
+      puts "link clicked: #{href}"
+      vmc.go_to_route(href, render_view: true, selector: "#app")
+    end
+
     def selector_modal_closed(page)
       if page
         puts "selector modal closed: page=#{page}"
@@ -127,7 +132,7 @@ module Pages
 
     def after_mount
       puts "in ShowViewModel#after_mount"
-      `new PageEditor(#{->(link_function){self.getLink(link_function)}})`
+      `new PageEditor(#{->(link_function){self.getLink(link_function)}}, #{->(href){self.linkClicked(href)}})`
     end
 
     def register_handlers
