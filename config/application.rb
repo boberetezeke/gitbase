@@ -16,5 +16,8 @@ module Gitbase
     # -- all .rb files in that directory are automatically loaded.
 
     config.opal.source_map_enabled = false
+
+    config.log_level = :trace
+    config.colorized_logging = true
   end
 end

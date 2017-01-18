@@ -23,9 +23,11 @@ gem 'haml'
 gem 'opal-rails'
 gem 'opal-haml'
 gem 'haml-rails'
+gem 'opal-semanticlogger', path: '../../Opal/opal-semanticlogger'
 gem 'opal-activerecord', path: "../../Opal/opal-activerecord"
 #gem 'opal-actionpack', git: 'git://github.com/boberetezeke/opal-actionpack.git'
 gem 'opal-actionpack', path: "../../Opal/opal-actionpack"
+gem 'opal-activesupport', path: "../../Opal/opal-activesupport"
 
 # Opal View Model and components
 gem 'opal-viewmodel',  path: "../../Opal/opal-viewmodel"
@@ -38,6 +40,8 @@ gem 'modal', path: '../../Opal/view_model_components/modal'
 gem 'simplemde-rails'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'devise'
+gem 'awesome_print'
+gem 'rails_semantic_logger'
 
 gem 'font-awesome-rails'
 

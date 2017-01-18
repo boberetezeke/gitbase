@@ -13,11 +13,20 @@ PATH
   specs:
     opal-actionpack (0.0.5)
       opal (>= 0.5.0, < 1.0.0)
+      opal-activerecord (>= 0.0.1, < 1.0.0)
+      opal-activesupport (>= 0.3.0, < 1.0.0)
+      opal-semanticlogger (>= 0.0.1, < 1.0.0)
 
 PATH
   remote: ../../Opal/opal-activerecord
   specs:
     opal-activerecord (0.0.1)
+      opal (>= 0.5.0, < 1.0.0)
+
+PATH
+  remote: ../../Opal/opal-activesupport
+  specs:
+    opal-activesupport (0.3.0)
       opal (>= 0.5.0, < 1.0.0)
 
 PATH
@@ -27,9 +36,15 @@ PATH
       opal (>= 0.5.0, < 1.0.0)
 
 PATH
+  remote: ../../Opal/opal-semanticlogger
+  specs:
+    opal-semanticlogger (0.0.1)
+      opal (>= 0.5.0, < 1.0.0)
+
+PATH
   remote: ../../Opal/opal-viewmodel
   specs:
-    opal-viewmodel (0.0.5)
+    opal-viewmodel (0.0.6)
       opal (>= 0.5.0, < 1.0.0)
 
 PATH
@@ -91,6 +106,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (7.1.4)
+    awesome_print (1.7.0)
     bcrypt (3.1.11)
     builder (3.2.2)
     byebug (9.0.6)
@@ -167,8 +183,6 @@ GEM
       sourcemap (~> 0.1.0)
       sprockets (~> 3.1)
       tilt (>= 1.4)
-    opal-activesupport (0.3.0)
-      opal (>= 0.5.0, < 1.0.0)
     opal-haml (0.4.2)
       haml
       opal (~> 0.10.0)
@@ -203,6 +217,9 @@ GEM
       nokogiri (~> 1.6.0)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails_semantic_logger (3.4.1)
+      rails (>= 3.2)
+      semantic_logger (~> 3.3)
     railties (5.0.0.1)
       actionpack (= 5.0.0.1)
       activesupport (= 5.0.0.1)
@@ -241,6 +258,8 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    semantic_logger (3.4.1)
+      concurrent-ruby (~> 1.0)
     sexp_processor (4.7.0)
     simplemde-rails (1.10.2)
     sourcemap (0.1.1)
@@ -279,6 +298,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  awesome_print
   byebug
   devise
   factory_girl_rails
@@ -292,12 +312,15 @@ DEPENDENCIES
   modal!
   opal-actionpack!
   opal-activerecord!
+  opal-activesupport!
   opal-form!
   opal-haml
   opal-rails
+  opal-semanticlogger!
   opal-viewmodel!
   puma (~> 3.0)
   rails (>= 5.0.0, < 5.1)
+  rails_semantic_logger
   rspec-rails
   sass-rails (~> 5.0)
   simplemde-rails
