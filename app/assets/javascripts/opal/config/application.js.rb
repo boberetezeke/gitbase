@@ -21,6 +21,11 @@ class MyApplication < Application
   end
 end
 
+class ViewModel
+  include PathHandler
+  include UrlHelper
+end
+
 # this is necessary so that Rails.application works as it calls Application.instance
 MyApplication.instance
 
