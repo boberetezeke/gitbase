@@ -1,0 +1,6 @@
+%div{ id: vm.id_value }
+  - if current_user
+    .navbar-text= breadcrumbs_html_safe
+  - else
+    .navbar-brand
+      GitBase - git based wiki

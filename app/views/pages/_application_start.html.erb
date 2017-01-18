@@ -2,18 +2,27 @@
     $(function() {
     Opal.MyApplication.$instance().$launch(
     '<%=
-  if @pages
-    json_hash = @pages.as_json(
-        root: true
-    )
-  else
-    json_hash = @page.as_json(
-        root: true
-    )
-  end
-  quote_single_quotes(json_hash.to_json).html_safe
-%>',
-    '<%= {}.to_json.html_safe %>'
+      if @pages
+        json_hash = (@pages.to_a + [current_user]).as_json(
+            root: true
+        )
+      else
+        json_hash = ([@page] + [current_user]).as_json(
+            root: true
+        )
+      end
+      quote_single_quotes(json_hash.to_json).html_safe
+    %>',
+    '<%=
+      if session['warden.user.user.key']
+        current_user_id = session['warden.user.user.key'].first.first
+      else
+        current_user_id = nil
+      end
+      {
+          current_user_id: current_user_id,
+      }.to_json.html_safe
+    %>'
     )
     });
 <% end %>

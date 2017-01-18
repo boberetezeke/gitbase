@@ -10,7 +10,8 @@ class PagesController < ApplicationController
               Selector::PagesViewModel.new(vmc, :selector, pages, selected_page_lambda: params[:_selected_page_lambda])
             else
               puts "building index pages view model"
-              Pages::IndexViewModel.new(vmc, pages)
+              breadcrumbs = [["Pages"]]
+              Layouts::ApplicationContentViewModel.new(vmc, breadcrumbs, current_user, Pages::IndexViewModel.new(vmc, pages))
             end
           }
         end
@@ -31,7 +32,10 @@ class PagesController < ApplicationController
       Pages::PageQuery.new(params).query.then do |page|
         @page = page
         format.html do
-          render_vm { |vmc| Pages::ShowViewModel.new(vmc, page) }
+          render_vm do |vmc|
+            breadcrumbs = [["Pages", pages_path], ["Page #{page.title}"]]
+            Layouts::ApplicationContentViewModel.new(vmc, breadcrumbs, current_user, Pages::ShowViewModel.new(vmc, page))
+          end
         end
         format.json do
           render json: page.to_json

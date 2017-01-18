@@ -1,0 +1,1 @@
+../../../../../../app/view_models/layouts/breadcrumbs_view_model.rb

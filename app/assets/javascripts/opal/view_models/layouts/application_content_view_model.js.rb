@@ -1,0 +1,1 @@
+../../../../../../app/view_models/layouts/application_content_view_model.rb
