@@ -15,6 +15,9 @@ require 'opal/view_models/table/requires'
 
 require 'opal/queries/query'
 
+require 'opal/models/page'
+require 'opal/models/user'
+
 require_tree '.'
 
 require 'opal/config/application'
