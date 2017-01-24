@@ -92,9 +92,16 @@ module Pages
     end
   end
 
+  class TitleTextViewModel < Fields::TextViewModel
+    def build
+      create(['pages/title_text', 'fields/text'])
+    end
+  end
+
   class ShowViewModel < ViewModel
-    def initialize(vmc, page)
+    def initialize(vmc, page, edit_state)
       @page = page
+      @edit_state = edit_state
       super(vmc, 'show', {modal_state: :off})
     end
 
@@ -102,8 +109,8 @@ module Pages
       @selector_modal = SelectorModal.new(vmc)
 
       form = form_for @page, vmc: vmc do |f|
-        f.text_field  :title
-        f.text_area   :body
+        f.text_field  :title, edit_state: @edit_state, klass: TitleTextViewModel
+        f.text_area   :body   # no need to set edit_state here as it is set in the PageEditor
         f.submit      :save, 'Create'
       end
 
@@ -130,7 +137,7 @@ module Pages
 
     def after_mount
       puts "in ShowViewModel#after_mount"
-      `new PageEditor(#{->(link_function){self.getLink(link_function)}}, #{->(href){self.linkClicked(href)}})`
+      `new PageEditor(#{@edit_state}, #{->(link_function){self.getLink(link_function)}}, #{->(href){self.linkClicked(href)}})`
     end
 
     def register_handlers

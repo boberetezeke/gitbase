@@ -1,5 +1,6 @@
-PageEditor = function(getLink, linkClicked) {
+PageEditor = function(displayMode, getLink, linkClicked) {
     self = this;
+    self.displayMode = displayMode;
     this.simpleMDE = new SimpleMDE({
         autoDownloadFontAwesome: false,
         toolbar: [
@@ -80,6 +81,8 @@ PageEditor = function(getLink, linkClicked) {
     });
     */
 
-    this.simpleMDE.togglePreview();
-    this.configureLinks();
+    if (this.displayMode != 'edit') {
+        this.simpleMDE.togglePreview();
+        this.configureLinks();
+    }
 }
