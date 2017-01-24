@@ -31,12 +31,18 @@ class PagesController < ApplicationController
     respond_to do |format|
       Pages::PageQuery.new(params).query.then do |page|
         @page = page
-        format.html do
-          render_vm do |vmc|
-            breadcrumbs = [["Pages", pages_path], ["Page #{page.title}"]]
-            Layouts::ApplicationContentViewModel.new(vmc, breadcrumbs, current_user, Pages::ShowViewModel.new(vmc, page))
-          end
+        show_view_model(format, [["Pages", pages_path], ["Page #{page.title}"]], :display, page)
+        format.json do
+          render json: page.to_json
         end
+      end
+    end
+  end
+
+  def edit
+    respond_to do |format|
+      Pages::PageQuery.new(params).query.then do |page|
+        show_view_model(format, [["Pages", pages_path], ["Page #{page.title}"]], :edit, page)
         format.json do
           render json: page.to_json
         end
@@ -45,9 +51,9 @@ class PagesController < ApplicationController
   end
 
   def new
-    @page = Page.new
-    @pages = Page.all
-    render_vm { |vmc| Pages::ShowViewModel.new(vmc, @page, @pages) }
+    respond_to do |format|
+      show_view_model(format, [["Pages", pages_path], ["New Page"]], :edit, Page.new)
+    end
   end
 
   def create
@@ -77,6 +83,15 @@ class PagesController < ApplicationController
   end
 
   private
+
+  def show_view_model(format, breadcrumbs, edit_state, page)
+    @page = page
+    format.html do
+      render_vm do |vmc|
+        Layouts::ApplicationContentViewModel.new(vmc, breadcrumbs, current_user, Pages::ShowViewModel.new(vmc, page, edit_state))
+      end
+    end
+  end
 
   def page_params
     params.require(:page).permit(:title, :body, :guid)
